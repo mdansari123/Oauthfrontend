@@ -4,6 +4,7 @@ import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AddclientComponent} from './addclient/addclient.component';
 import {BookComponent} from './book/book.component';
+import {WorkspaceComponent} from './workspace/workspace.component';
 import {AuthManager} from './authmanager';
  
 
@@ -14,6 +15,7 @@ export const appRoutes: Routes = [
     {path: 'dashboard', component:DashboardComponent},
     {path: 'addclient', component:AddclientComponent},
     {path: 'books', component:BookComponent},
+    {path: 'workspace', component:WorkspaceComponent},
     
 ]
 

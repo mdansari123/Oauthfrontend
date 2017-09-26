@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="margin-20">
+        <h4>Add Dialog</h4>
+      </div>
+      <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+        <div class="form-group">
+          <label>Intent Name</label>
+          <input type="text" class="form-control" formControlName="Intentname">
+          <small *ngIf="!myForm.controls.Intentname.valid" class="text-danger">
+              Intent Name is required (minimum 5 characters).
+            </small>
+        </div>  
+        <!--Intent-->
+        <div formArrayName="Intentquestions">
+          <div *ngFor="let Intentquestion of myForm.controls.Intentquestions.controls; let i=index" class="panel panel-default">
+            <div class="panel-heading">
+              <span>Intent Questions {{i + 1}}</span>
+              <span class="glyphicon glyphicon-remove pull-right" *ngIf="myForm.controls.Intentquestions.controls.length > 1" (click)="removeIntentquestion(i)"></span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <div class="form-group col-xs-6">
+                <label></label>
+                <input type="text" class="form-control" formControlName="question">
+                <small [hidden]="myForm.controls.Intentquestions.controls[i].controls.question.valid" class="text-danger">
+                    Question is required
+                </small>
+              </div>
+              <!-- <div class="form-group col-xs-6">
+                <label>postcode</label>
+                <input type="text" class="form-control" formControlName="postcode">
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="margin-20">
+          <a (click)="addIntentquestion()" style="cursor: default">
+            Add another intent question +
+          </a>
+        </div>
+
+        <div class="margin-20">
+          <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Save</button>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="margin-20">
+          <div>myForm details:-</div>
+          <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+          <pre>form value: <br>{{myForm.value | json}}</pre>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
